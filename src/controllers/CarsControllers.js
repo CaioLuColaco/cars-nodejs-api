@@ -8,6 +8,12 @@ module.exports = {
 
             const {marca, model, color, yearFabrication, yearModel} = req.body
 
+            const verification = await prisma.cars.findMany({ where: {marca: marca, model: model, color: color, yearFabrication: yearFabrication, yearModel: yearModel }})
+
+            if(verification.length != 0) {
+                return res.status(400).json({status: 400, message: "Carro já cadastrado!"})
+            }
+
             const result = await prisma.cars.create({
                 data: {
                     marca: marca,
