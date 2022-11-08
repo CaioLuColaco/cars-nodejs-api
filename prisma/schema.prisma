@@ -12,7 +12,7 @@ datasource db {
 
 model Cars {
   id                  Int                 @id @default(autoincrement())
-  marca               String              @unique
+  marca               String              
   model               String
   color               String
   yearFabrication     Int
